@@ -1,0 +1,25 @@
+<ng-container [ngSwitch]="camera.state$ | async">
+  <ng-container *ngSwitchCase="CameraState.Stale">
+    <button (click)="camera.requestAccess()">
+      Open camera
+    </button>
+  </ng-container>
+
+  <ng-container *ngSwitchCase="CameraState.AccessDenied">
+    <p>Cannot access camera...😞</p>
+  </ng-container>
+
+  <ng-container *ngSwitchDefault>
+    <p>📸</p>
+    <button>Detect</button>
+
+    <video
+      autoplay
+      height="240"
+      id="videoElement"
+      playsinline
+      [srcObject]="camera.mediaStream$ | async"
+      width="320"
+    ></video>
+  </ng-container>
+</ng-container>
