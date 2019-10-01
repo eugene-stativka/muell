@@ -8,6 +8,7 @@ import {
 import { BehaviorSubject, Observable } from 'rxjs'
 import { distinctUntilChanged, map, tap } from 'rxjs/operators'
 import { ObjectDetectionService } from '../object-detection.service'
+import { PageMetaService } from '../page-meta.service'
 import { CameraService } from './camera.service'
 import { predictionToPhrase } from './prediction-to-phrase'
 import { CameraState } from './types'
@@ -33,12 +34,14 @@ export class ScannerComponent implements OnInit {
   constructor(
     public readonly camera: CameraService,
     private readonly detection: ObjectDetectionService,
+    private readonly pageMeta: PageMetaService,
   ) {
     this.prediction$ = this.predictionSubject$.pipe(distinctUntilChanged())
   }
 
   ngOnInit() {
     this.detection.preloadModel()
+    this.pageMeta.setMetaData({ title: '' })
   }
 
   detect() {
