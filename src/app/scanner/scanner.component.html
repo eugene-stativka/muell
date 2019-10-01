@@ -11,9 +11,10 @@
 
   <ng-container *ngSwitchDefault>
     <p>📸</p>
-    <button>Detect</button>
+    <button (click)="detect()">Detect</button>
 
     <video
+      #video
       autoplay
       height="240"
       id="videoElement"
@@ -21,5 +22,7 @@
       [srcObject]="camera.mediaStream$ | async"
       width="320"
     ></video>
+
+    <p *ngIf="prediction$ | async as prediction">{{ prediction }}</p>
   </ng-container>
 </ng-container>
