@@ -13,7 +13,7 @@
   </ng-container>
 
   <ng-container *ngSwitchCase="CameraState.AccessDenied">
-    <p>Cannot access camera...😞</p>
+    <p [@fadeInOut]>Cannot access camera...😞</p>
   </ng-container>
 
   <ng-container *ngSwitchDefault>
@@ -29,6 +29,8 @@
 
     <button (click)="detect()">Detect</button>
 
-    <p *ngIf="prediction$ | async as prediction">{{ prediction }}</p>
+    <p *ngIf="prediction$ | async as prediction" [@fadeInOut]>
+      {{ prediction }}
+    </p>
   </ng-container>
 </ng-container>

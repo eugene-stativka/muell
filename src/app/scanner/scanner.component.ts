@@ -5,6 +5,7 @@ import {
   OnInit,
   ViewChild,
 } from '@angular/core'
+import { animate, state, style, transition, trigger } from '@angular/animations'
 import { BehaviorSubject, Observable } from 'rxjs'
 import { distinctUntilChanged, map, tap } from 'rxjs/operators'
 import { ObjectDetectionService } from '../object-detection.service'
@@ -18,6 +19,17 @@ import { CameraState } from './types'
   templateUrl: './scanner.component.html',
   styleUrls: ['./scanner.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
+  animations: [
+    trigger('fadeInOut', [
+      state(
+        'void',
+        style({
+          opacity: 0,
+        }),
+      ),
+      transition('void <=> *', animate(400)),
+    ]),
+  ],
 })
 export class ScannerComponent implements OnInit {
   public readonly CameraState = CameraState
