@@ -1,1 +1,30 @@
-/* You can add global styles to this file, and also import other style files */
+:root {
+  --color-dark: #424242;
+  --color-light: #ffc107;
+  --color-scheme-background: var(--color-light);
+  --color-scheme-text-color: var(--color-dark);
+}
+
+@media (prefers-color-scheme: light) {
+  :root {
+    --color-scheme-background: var(--color-light);
+    --color-scheme-text-color: var(--color-dark);
+  }
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --color-scheme-background: var(--color-dark);
+    --color-scheme-text-color: var(--color-light);
+  }
+}
+
+/* Usage */
+html {
+  background: var(--color-scheme-background);
+  color: var(--color-scheme-text-color);
+}
+body {
+  margin: 0;
+  font-family: sans-serif;
+}

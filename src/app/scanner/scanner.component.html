@@ -1,5 +1,12 @@
+<h1>Müll ♻️</h1>
+
 <ng-container [ngSwitch]="camera.state$ | async">
   <ng-container *ngSwitchCase="CameraState.Stale">
+    <div>
+      <p>How to recycle garbage in 🇩🇪?</p>
+      <p>Use your camera to find out</p>
+    </div>
+
     <button (click)="camera.requestAccess()">
       Open camera
     </button>
@@ -10,9 +17,6 @@
   </ng-container>
 
   <ng-container *ngSwitchDefault>
-    <p>📸</p>
-    <button (click)="detect()">Detect</button>
-
     <video
       #video
       autoplay
@@ -22,6 +26,8 @@
       [srcObject]="camera.mediaStream$ | async"
       width="320"
     ></video>
+
+    <button (click)="detect()">Detect</button>
 
     <p *ngIf="prediction$ | async as prediction">{{ prediction }}</p>
   </ng-container>
